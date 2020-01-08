@@ -10,7 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_08_160841) do
+ActiveRecord::Schema.define(version: 2020_01_08_173426) do
+
+  create_table "addresses", force: :cascade do |t|
+    t.string "description"
+    t.string "city"
+    t.string "country"
+    t.string "zip"
+    t.decimal "lat", precision: 10, scale: 6
+    t.decimal "long", precision: 10, scale: 6
+    t.string "addressable_type"
+    t.integer "addressable_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["addressable_type", "addressable_id"], name: "index_addresses_on_addressable_type_and_addressable_id"
+  end
 
   create_table "images", force: :cascade do |t|
     t.string "description"
@@ -38,6 +52,8 @@ ActiveRecord::Schema.define(version: 2020_01_08_160841) do
     t.integer "landlord_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.decimal "width", precision: 6, scale: 2, default: "0.0"
+    t.decimal "length", precision: 6, scale: 2, default: "0.0"
     t.index ["landlord_id"], name: "index_properties_on_landlord_id"
   end
 

@@ -6,6 +6,8 @@ class Property < ApplicationRecord
     validates :price, numericality: {greater_than: 0}
     belongs_to :landlord
     has_many :images
+    has_one :address, as: :addressable
+
 
     def add_images(image)
         self.images << image
