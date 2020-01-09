@@ -6,9 +6,16 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+require 'json'
+
 50.times do |n|
     Landlord.create!(name: "Landlord #{n}")
 end
+
+file = File.open "#{__dir__}/world-cities_json.json"
+world_cities = JSON.load file
+file.close
+
 
 100.times do |n|
     property = Property.new
@@ -22,5 +29,11 @@ end
     property.length = rand(10..50)
     property.price = rand(100.0 .. 1000000.0)
     property.landlord = Landlord.find(rand(1..50))
+
+    random_address = (0...50).map { ('a'..'z').to_a[rand(26)] }.join
+    random_world_city = world_cities.sample(1).first
+    
+    property.address = Address.new(description: random_address, country: random_world_city['country'], 
+        city: random_world_city['name'])
     property.save
 end

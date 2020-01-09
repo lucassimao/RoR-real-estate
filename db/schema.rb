@@ -47,6 +47,7 @@ ActiveRecord::Schema.define(version: 2020_01_09_143035) do
 
   create_table "properties", force: :cascade do |t|
     t.string "description"
+    t.decimal "total_area", precision: 6, scale: 2
     t.decimal "price", precision: 6, scale: 2
     t.integer "landlord_id"
     t.datetime "created_at", null: false

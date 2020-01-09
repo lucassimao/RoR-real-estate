@@ -1,5 +1,7 @@
 class Property < ApplicationRecord
     validates :description, presence: true
+    validates :title, presence: true
+
     validates :landlord, presence: true
     validates :length, numericality: {greater_than: 0}
     validates :width, numericality: {greater_than: 0}
