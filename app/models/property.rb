@@ -15,7 +15,13 @@ class Property < ApplicationRecord
         "Land" => 2,
         "Farm" => 3
     }
+    enum offer_type: {
+        "Sell" => 0,
+        "Rent" => 1
+    }    
     validates :property_type, inclusion: property_types.keys
+    validates :offer_type, inclusion: offer_types.keys
+
 
     def add_images(image)
         self.images << image
