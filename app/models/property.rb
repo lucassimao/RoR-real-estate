@@ -7,7 +7,13 @@ class Property < ApplicationRecord
     belongs_to :landlord
     has_many :images
     has_one :address, as: :addressable
-
+    enum property_type: {
+        "House" => 0,
+        "Apartment" => 1,
+        "Land" => 2,
+        "Farm" => 3
+    }
+    validates :property_type, inclusion: property_types.keys
 
     def add_images(image)
         self.images << image
