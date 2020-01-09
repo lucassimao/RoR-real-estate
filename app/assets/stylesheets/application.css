@@ -25,6 +25,7 @@ body {
 
 main {
   flex-grow: 1;
+  color: #666;
 }
 
 header {
@@ -56,9 +57,22 @@ header h1 p {
   font-size: 2em;
 }
 
-header nav li:hover {
-  color: #006aff;
+a, a:visited, h1 a{
+    text-decoration: none;
 }
+
+h1 a:hover,
+header nav li:hover,
+header nav a:hover {
+  color: #006aff;
+  background-color: #fff;
+}
+
+strong{
+    font-weight: bold;
+}
+
+
 
 footer ul {
   padding: 0.5em;

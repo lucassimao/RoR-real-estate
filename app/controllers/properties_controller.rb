@@ -4,8 +4,18 @@ class PropertiesController < ApplicationController
   # GET /properties
   # GET /properties.json
   def index
-    @properties = Property.all
+    @properties = Property.get_all(params['city'],params['country'])
   end
+
+def sale_offers
+    @properties = Property.sale_offers(params['city'],params['country'])
+    render(action: :index)
+end
+
+def renting_offers
+    @properties = Property.renting_offers(params['city'],params['country'])
+    render(action: :index)
+end  
 
   # GET /properties/1
   # GET /properties/1.json

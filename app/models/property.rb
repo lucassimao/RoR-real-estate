@@ -1,7 +1,8 @@
 class Property < ApplicationRecord
+    # Validation 
+
     validates :description, presence: true
     validates :title, presence: true
-
     validates :landlord, presence: true
     validates :length, numericality: {greater_than: 0}
     validates :width, numericality: {greater_than: 0}
@@ -22,6 +23,22 @@ class Property < ApplicationRecord
     validates :property_type, inclusion: property_types.keys
     validates :offer_type, inclusion: offer_types.keys
 
+    # Scopes
+
+    scope :get_all, -> (city,country) do
+        filter = build_filter(nil, city, country)
+        includes(:address).where(filter).order('properties.created_at desc').limit(20)
+    end
+
+    scope :sale_offers, ->  (city,country) do
+        filter = build_filter(:Sell, city, country)
+        includes(:address).where(filter).order('properties.created_at desc').limit(20)
+    end
+
+    scope :renting_offers, -> (city,country) do
+        filter = build_filter(:Rent, city, country)
+        includes(:address).where(filter).order('properties.created_at desc').limit(20)        
+    end
 
     def add_images(image)
         self.images << image
@@ -29,6 +46,22 @@ class Property < ApplicationRecord
 
     def total_area
         return self.length*self.width
+    end
+
+    private
+
+    def self.build_filter(offer_type,city,country)
+        filter = {}
+        if offer_type 
+            filter['offer_type'] = offer_type
+        end
+        if city
+            filter['addresses.city'] = city
+        end
+        if country
+            filter['addresses.country'] = country
+        end
+        return filter
     end
 
 end
