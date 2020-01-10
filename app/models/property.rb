@@ -7,7 +7,7 @@ class Property < ApplicationRecord
     validates :length, numericality: {greater_than: 0}
     validates :width, numericality: {greater_than: 0}
     validates :price, numericality: {greater_than: 0}
-    belongs_to :landlord
+    belongs_to :landlord, class_name: 'User', foreign_key: 'user_id'
     has_many :images
     has_one :address, as: :addressable
     enum property_type: {

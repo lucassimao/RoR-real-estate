@@ -10,10 +10,10 @@ require 'json'
 
 Address.delete_all
 Property.delete_all
-Landlord.delete_all
+User.delete_all
 
 50.times do |n|
-    Landlord.create!(name: "Landlord #{n}")
+    User.create!(name: "Landlord #{n}", login: "landlord#{n}@gmail.com", password: '123')
 end
 
 file = File.open "#{__dir__}/world-cities_json.json"
@@ -34,7 +34,7 @@ file.close
     property.width = rand(10..30)
     property.length = rand(10..50)
     property.price = rand(100.0 .. 1000000.0)
-    property.landlord = Landlord.all.sample(1).first
+    property.landlord = User.all.sample(1).first
 
     random_address = (0...50).map { ('a'..'z').to_a[rand(26)] }.join
     random_world_city = world_cities.sample(1).first

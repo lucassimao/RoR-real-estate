@@ -1,0 +1,26 @@
+<%= form_with(model: user, local: true) do |form| %>
+
+  <div class="field">
+    <%= form.text_field :login, placeholder: 'Enter your email', type: 'email', autocomplete: 'no' %>
+    <p class="error_msg"> <%= user.errors.messages[:login].first %> </p>
+  </div>
+
+  <div class="field">
+    <%= form.password_field :password, placeholder: 'Choose a password' %>
+    <p class="error_msg"> <%= user.errors.messages[:password].first %> </p>
+
+  </div>
+
+  <div class="field">
+    <%= form.password_field :password_confirmation, placeholder: 'Confirm your password' %>
+    <p class="error_msg"> <%= user.errors.messages[:password_confirmation].first %> </p>
+  </div>
+
+  <div class="actions">
+  <% if user.new_record? %>
+    <%= form.submit 'Submit' %>
+  <% else %>
+  <% end %>
+
+  </div>
+<% end %>

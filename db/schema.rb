@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_09_151114) do
+ActiveRecord::Schema.define(version: 2020_01_10_180133) do
 
   create_table "addresses", force: :cascade do |t|
     t.string "description"
@@ -38,18 +38,10 @@ ActiveRecord::Schema.define(version: 2020_01_09_151114) do
     t.index ["property_id"], name: "index_images_on_property_id"
   end
 
-  create_table "landlords", force: :cascade do |t|
-    t.string "name"
-    t.date "birth_date"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "properties", force: :cascade do |t|
     t.string "description"
     t.decimal "total_area", precision: 6, scale: 2
     t.decimal "price", precision: 6, scale: 2
-    t.integer "landlord_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.decimal "width", precision: 6, scale: 2, default: "0.0"
@@ -57,7 +49,17 @@ ActiveRecord::Schema.define(version: 2020_01_09_151114) do
     t.integer "property_type"
     t.string "title"
     t.integer "offer_type"
-    t.index ["landlord_id"], name: "index_properties_on_landlord_id"
+    t.integer "user_id"
+    t.index ["user_id"], name: "index_properties_on_user_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "login"
+    t.string "password_digest"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "name"
+    t.index ["login"], name: "index_users_on_login", unique: true
   end
 
 end
