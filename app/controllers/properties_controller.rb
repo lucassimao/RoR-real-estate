@@ -1,5 +1,6 @@
 class PropertiesController < ApplicationController
   before_action :set_property, only: [:show, :edit, :update, :destroy]
+  skip_before_action :authorize, only: [:index, :sale_offers, :renting_offers,:show]
 
   # GET /properties
   # GET /properties.json
