@@ -1,6 +1,7 @@
 <div class="user">
+<h1> New Account </h1>
 <%= render 'form', user: @user %>
+<%= link_to 'Sign in', auth_sign_in_url  %>
 </div>
 
 
-<%= link_to 'Back', users_path %>

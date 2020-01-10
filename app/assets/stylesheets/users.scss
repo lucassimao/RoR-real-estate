@@ -3,25 +3,39 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .user {
-  margin-top: 5em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  h1 {
+    margin: 1em 0;
+    font-size: 2em;
+    font-weight: bold;
+    color: #000;
+  }
+
+  a{
+      margin-top: 2em;
+      font-size: 1.3em;
+  }
+
   form {
-    margin: 0 auto;
-    width: 400px;
+
+    border-bottom: 1px solid #ccc;
 
     .field_with_errors {
-        border: none;
+      border: none;
       background-color: inherit;
       display: block;
 
       input {
         border: 1px solid #f00;
-
       }
     }
 
-    .error_msg{
-        font-weight: bold;
-        color:#000;
+    .error_msg {
+      font-weight: bold;
+      color: #000;
     }
 
     input {
@@ -30,8 +44,6 @@
       padding: 0.2em;
       font-size: 2em;
     }
-
-    
 
     input[type="email"]:focus,
     input[type="password"]:focus {

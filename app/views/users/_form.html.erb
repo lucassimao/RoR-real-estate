@@ -1,6 +1,11 @@
 <%= form_with(model: user, local: true) do |form| %>
 
   <div class="field">
+    <%= form.text_field :name, placeholder: 'Your name', autocomplete: 'no' %>
+    <p class="error_msg"> <%= user.errors.messages[:name].first %> </p>
+  </div>
+
+  <div class="field">
     <%= form.text_field :login, placeholder: 'Enter your email', type: 'email', autocomplete: 'no' %>
     <p class="error_msg"> <%= user.errors.messages[:login].first %> </p>
   </div>
