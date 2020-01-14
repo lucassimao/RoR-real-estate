@@ -1,22 +1,26 @@
 class PropertiesController < ApplicationController
   before_action :set_property, only: [:show, :edit, :update, :destroy]
-  skip_before_action :authorize, only: [:index, :sale_offers, :renting_offers,:show]
+  skip_before_action :authorize, only: [:index, :sale_offers, :renting_offers, :show]
 
   # GET /properties
   # GET /properties.json
   def index
-    @properties = Property.get_all(params['city'],params['country'])
+    @properties = Property.get_all(params["city"], params["country"])
   end
 
-def sale_offers
-    @properties = Property.sale_offers(params['city'],params['country'])
-    render(action: :index)
-end
+  def my_properties
+    @properties = authenticated_user.properties
+  end
 
-def renting_offers
-    @properties = Property.renting_offers(params['city'],params['country'])
+  def sale_offers
+    @properties = Property.sale_offers(params["city"], params["country"])
     render(action: :index)
-end  
+  end
+
+  def renting_offers
+    @properties = Property.renting_offers(params["city"], params["country"])
+    render(action: :index)
+  end
 
   # GET /properties/1
   # GET /properties/1.json
@@ -36,10 +40,11 @@ end
   # POST /properties.json
   def create
     @property = Property.new(property_params)
+    @property.landlord = authenticated_user
 
     respond_to do |format|
       if @property.save
-        format.html { redirect_to @property, notice: 'Property was successfully created.' }
+        format.html { redirect_to @property, notice: "Property was successfully created." }
         format.json { render :show, status: :created, location: @property }
       else
         format.html { render :new }
@@ -53,7 +58,7 @@ end
   def update
     respond_to do |format|
       if @property.update(property_params)
-        format.html { redirect_to @property, notice: 'Property was successfully updated.' }
+        format.html { redirect_to @property, notice: "Property was successfully updated." }
         format.json { render :show, status: :ok, location: @property }
       else
         format.html { render :edit }
@@ -67,19 +72,20 @@ end
   def destroy
     @property.destroy
     respond_to do |format|
-      format.html { redirect_to properties_url, notice: 'Property was successfully destroyed.' }
+      format.html { redirect_to my_properties_properties_url , notice: "Property was successfully destroyed." }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_property
-      @property = Property.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def property_params
-      params.require(:property).permit(:description, :total_area, :price)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_property
+    @property = Property.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def property_params
+    params.require(:property).permit(:description, :total_area, :price)
+  end
 end

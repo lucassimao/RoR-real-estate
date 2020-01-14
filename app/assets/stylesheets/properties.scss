@@ -15,3 +15,41 @@
     color: #000;
   }
 }
+
+.properties {
+
+  .new-property {
+    border-radius: 0.3em;
+    padding: 0.5em;
+
+    background-color: #006aff;
+    border: none;
+    color: #fff;
+    float: right;
+  }
+}
+.properties .table-properties {
+  margin: 2em 0;
+  border-collapse: collapse;
+  width: 100%;
+
+
+  td {
+    border-bottom: 1px solid #333;
+    padding: 5px;
+  }
+
+  th {
+    border-bottom: 1px solid #333;
+    padding: 5px;
+    text-align: start;
+
+    font-weight: bold;
+    color: #000;
+    font-size: 1.2em;
+  }
+
+  tbody tr:nth-child(even) {
+    background-color: #fdfdfd;
+  }
+}

@@ -15,7 +15,6 @@
             <ul>
                 <li><%= link_to 'Buy', sale_offers_properties_path %></li>
                 <li><%= link_to 'Rent', renting_offers_properties_path %></li>
-                <li>Sell</li>
             </ul>
         </nav>
 
@@ -32,7 +31,7 @@
         <nav>
             <ul>
                 <% if is_user_authenticated %>
-                <li>Manage rentals</li>
+                <li><%= link_to 'Your properties', my_properties_properties_path %></li>
                 <li><%= link_to 'Profile', edit_user_path(authenticated_user) %> </li>
                 <li><%= link_to 'Sign out', auth_sign_out_path %> </li>
                 <% else %>

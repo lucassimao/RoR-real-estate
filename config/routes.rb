@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     resources :properties do
         get :sale_offers, on: :collection
         get :renting_offers, on: :collection
+        get :my_properties, on: :collection
     end
   resources :users
   resources :images

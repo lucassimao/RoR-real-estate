@@ -1,0 +1,35 @@
+<div class="properties">
+    <% if notice %>
+        <p> <%= notice %> </p>
+    <% end %>
+    <table class="table-properties">
+        <thead>
+            <tr>
+                <th># Id</th>
+                <th># Title</th>
+                <th># Type</th>
+                <th># Price</th>
+                <th># Width</th>
+                <th># Length</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @properties.each do |p| %>
+                <tr>
+                    <td><%= p.id %></td>
+                    <td><%= p.title %></td>
+                    <td><%= p.property_type %></td>
+                    <td><%= number_to_currency p.price %></td>
+                    <td><%= p.width %></td>
+                    <td><%= p.length %></td>
+                    <td><%= link_to 'Edit', edit_property_path(p)  %></td>
+                    <td><%= link_to 'Delete', p, method: :delete  %></td>
+
+                </tr>
+            <% end %>    
+        </tbody>
+    </table>
+    <%= link_to 'New Property', new_property_path, {class: 'new-property'} %>
+</div>
