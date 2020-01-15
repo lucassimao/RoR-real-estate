@@ -10,6 +10,8 @@ class Property < ApplicationRecord
     belongs_to :landlord, class_name: 'User', foreign_key: 'user_id'
     has_many :images
     has_one :address, as: :addressable
+    accepts_nested_attributes_for :address
+
     enum property_type: {
         "House" => 0,
         "Apartment" => 1,

@@ -30,6 +30,7 @@ class PropertiesController < ApplicationController
   # GET /properties/new
   def new
     @property = Property.new
+    @property.address = Address.new
   end
 
   # GET /properties/1/edit
@@ -56,6 +57,9 @@ class PropertiesController < ApplicationController
   # PATCH/PUT /properties/1
   # PATCH/PUT /properties/1.json
   def update
+    puts 'kkkkkkkkkkkkkkkkkkkkk'
+    puts property_params
+
     respond_to do |format|
       if @property.update(property_params)
         format.html { redirect_to @property, notice: "Property was successfully updated." }
@@ -86,6 +90,7 @@ class PropertiesController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def property_params
-    params.require(:property).permit(:description, :total_area, :price, :title, :property_type, :offer_type, :width, :length)
+    params.require(:property).permit(:description, :total_area, :price, :title, :property_type, 
+            :offer_type, :width, :length, address_attributes: [:city, :country, :description, :id])
   end
 end
