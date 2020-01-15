@@ -17,7 +17,6 @@
 }
 
 .properties {
-
   .new-property {
     border-radius: 0.3em;
     padding: 0.5em;
@@ -32,7 +31,6 @@
   margin: 2em 0;
   border-collapse: collapse;
   width: 100%;
-
 
   td {
     border-bottom: 1px solid #333;
@@ -51,5 +49,41 @@
 
   tbody tr:nth-child(even) {
     background-color: #fdfdfd;
+  }
+}
+
+.new {
+  margin-top: 2em;
+
+  form {
+    width: 500px;
+    margin: 0 auto;
+
+    input[type="text"],
+    textarea {
+      box-sizing: border-box;
+      width: 100%;
+    }
+
+    label {
+      font-weight: bold;
+    }
+
+    .row {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .actions {
+      text-align: end;
+
+      input[type="submit"] {
+        border-radius: 0.3em;
+        padding: 0.5em;
+        background-color: #006aff;
+        border: none;
+        color: #fff;
+      }
+    }
   }
 }
